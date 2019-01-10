@@ -1,0 +1,47 @@
+{
+  "name": "eh",
+  "version": "1.0.0",
+  "description": "Simple tiny event manager",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Foursk-main/eh.git"
+  },
+  "keywords": [
+    "Event",
+    "eh"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run lint && mocha --require @babel/register --require @babel/polyfill tests/**/*.test.js",
+    "bench": "babel-node tests/benchmark.js",
+    "tscw": "tsc --watch",
+    "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run format && npm run lint && npm test"
+  },
+  "author": "Foursk",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/register": "^7.0.0",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "moment": "^2.23.0",
+    "prettier": "^1.15.3",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.1"
+  },
+  "dependencies": {},
+  "files": [
+    "/dist/**/*"
+  ]
+}
