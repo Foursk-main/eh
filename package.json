@@ -1,5 +1,5 @@
 {
-  "name": "eh",
+  "name": "@foursk/eh",
   "version": "0.1.0",
   "description": "Simple tiny event manager",
   "main": "dist/index.js",
@@ -10,7 +10,8 @@
   },
   "keywords": [
     "Event",
-    "eh"
+    "eh",
+    "foursk"
   ],
   "scripts": {
     "build": "tsc",
@@ -22,7 +23,7 @@
     "prepare": "npm run build",
     "prepublishOnly": "npm run format && npm run lint && npm test"
   },
-  "author": "Foursk",
+  "author": "foursk",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.2.2",

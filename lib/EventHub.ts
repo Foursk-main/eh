@@ -62,8 +62,7 @@ export class EventHub {
       if (handlers) {
         // fireInternalRecursive(resolve, data, name, handlers, 0);
         fireInternalRecursive({ resolve, data, name, handlers, idx: 0 });
-      }
-      else {
+      } else {
         resolve(data);
       }
     });

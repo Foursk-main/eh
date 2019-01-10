@@ -2,8 +2,8 @@
 
 Eh provides simple and flexible event management.
 
-## Usage
-    npm i -s eh
+## Installation
+    npm i -s @foursk/eh
 
 ## Examples
 

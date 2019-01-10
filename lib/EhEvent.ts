@@ -4,7 +4,11 @@ let generatedEventsCounter = 0;
 const makeName = (original: string) => `${original}_${generatedEventsCounter++}`;
 
 export class EhEvent<T> {
-  public static fromInstance<ST>(instance: ST, name: string = makeName(instance.constructor.name), eventHub: EventHub = eh) {
+  public static fromInstance<ST>(
+    instance: ST,
+    name: string = makeName(instance.constructor.name),
+    eventHub: EventHub = eh,
+  ) {
     return new EhEvent<ST>(name, eventHub);
   }
 
