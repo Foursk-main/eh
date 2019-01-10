@@ -1,4 +1,4 @@
-import { genRandomString, EhEvent, eh, expect } from './test-kit';
+import { genRandomString, eh, expect } from './test-kit';
 
 /**
  * tests
@@ -63,13 +63,3 @@ describe("basic tests", function () {
         eh.fire(eventName, data);
     });
 });
-
-// changePosition.register(async cpe => {
-//     cpe.swap();
-//     console.log("swapped");
-//     return cpe;
-// });
-
-// changePosition.fire(new ChangePositionEvent(3, 4)).then(cpe => {
-//     console.log(cpe);
-// });

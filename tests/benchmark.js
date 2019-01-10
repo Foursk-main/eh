@@ -1,11 +1,11 @@
 import { genRandomString, EhEvent } from './test-kit';
 import { EventHub } from '../dist/EventHub';
-import moment, { now } from 'moment';
+import moment from 'moment';
 
 const magicNumbers = [1, 100, 1000, 1000000];
 //const magicNumbers = [1, 100, 1000, 10000, 100000, 1000000];
 //const magicNumbers = [1, 100, 1000, 10000];
-const iterations = 100;
+const iterations = 10;
 const stats = {};
 
 function printStats() {
@@ -126,7 +126,7 @@ async function benchmarkWithNamesArray(magicNumber, names) {
 
 }
 
-console.log("******************* Benchmarks *******************")
+console.log("******************* Benchmarks *******************");
 
 const maxMagicNumber = magicNumbers[magicNumbers.length - 1];
 const names = [];
@@ -138,7 +138,7 @@ for (let i = 0; i < maxMagicNumber; i++) {
 console.timeEnd('Generate Names');
 console.log();
 
-function runBenchmark(idx) {
+function runBenchmark(idx = 0) {
     if (idx === magicNumbers.length) {
         printStats();
         console.log("Done.");
@@ -154,4 +154,4 @@ function runBenchmark(idx) {
     });
 }
 
-runBenchmark(0);
+runBenchmark();

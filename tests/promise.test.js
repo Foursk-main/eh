@@ -1,4 +1,4 @@
-import { genRandomString, EhEvent, eh, expect } from './test-kit';
+import { genRandomString, eh, expect } from './test-kit';
 
 function getPromiseTest(handler) {
     return function (done) {
@@ -43,8 +43,8 @@ describe("promises", function () {
             event3 = genRandomString();
 
         const handler3 = () => console.log('promise chaining handler3');
-        const handler2 = async () => { console.log('promise chaining handler2'); return eh.fire(event3); };
-        const handler1 = async () => { console.log('promise chaining handler1'); return eh.fire(event2); };
+        const handler2 = () => { console.log('promise chaining handler2'); return eh.fire(event3); };
+        const handler1 = () => { console.log('promise chaining handler1'); return eh.fire(event2); };
 
         eh.register(event3, handler3);
         eh.register(event2, handler2);

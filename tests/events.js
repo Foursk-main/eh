@@ -15,4 +15,4 @@ export class ChangePositionEvent {
 
 export const changePosition = EhEvent.fromClass(ChangePositionEvent);
 export const changeName = EhEvent.fromInstance({ name: "" }, "changeName");
-export const direct = EhEvent.fromClass(class Direct { constructor(msg) { this.msg = msg } });
+export const direct = EhEvent.fromClass(class Direct { constructor(msg) { this.msg = msg; } });

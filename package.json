@@ -1,6 +1,6 @@
 {
   "name": "eh",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Simple tiny event manager",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,11 +14,11 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "npm run lint && mocha --require @babel/register --require @babel/polyfill tests/**/*.test.js",
+    "test": "npm run lint && npm run build && mocha --require @babel/register --require @babel/polyfill tests/**/*.test.js",
     "bench": "babel-node tests/benchmark.js",
     "tscw": "tsc --watch",
     "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "tslint -p tsconfig.json && eslint -c .eslintrc.json examples tests",
     "prepare": "npm run build",
     "prepublishOnly": "npm run format && npm run lint && npm test"
   },
@@ -32,7 +32,10 @@
     "@babel/register": "^7.0.0",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
+    "babel-eslint": "^10.0.1",
     "chai": "^4.2.0",
+    "eslint": "^5.12.0",
+    "eslint-plugin-mocha": "^5.2.1",
     "mocha": "^5.2.0",
     "moment": "^2.23.0",
     "prettier": "^1.15.3",

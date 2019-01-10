@@ -1,4 +1,4 @@
-import { eh, EhEvent, genRandomString } from './test-kit';
+import { eh, genRandomString } from './test-kit';
 
 describe("Error handling", function () {
 
@@ -21,7 +21,7 @@ describe("Error handling", function () {
         eh.register(eventName, badHandler);
 
         eh.fire(eventName).then(() => console.log("Shouldn't get here!"))
-            .catch(e => {
+            .catch(() => {
                 console.log("Should get here! ");
                 done();
             });

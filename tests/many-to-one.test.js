@@ -1,4 +1,4 @@
-import { genRandomString, EhEvent, eh, expect } from './test-kit';
+import { genRandomString, eh } from './test-kit';
 
 describe("many to one", function () {
 
@@ -7,7 +7,7 @@ describe("many to one", function () {
             eventNames = [];
 
         let hitCount = 0;
-        const handler = () => { if (++hitCount === handlerCount) done(); }
+        const handler = () => { if (++hitCount === handlerCount) done(); };
 
         for (let i = 0; i < handlerCount; i++) {
             let eventName = genRandomString();
@@ -26,7 +26,7 @@ describe("many to one", function () {
 
         let counter = { value: 0 };
 
-        const handler = c => { if (++c.value === handlerCount) done(); }
+        const handler = c => { if (++c.value === handlerCount) done(); };
 
         for (let i = 0; i < handlerCount; i++) {
             let eventName = genRandomString();
