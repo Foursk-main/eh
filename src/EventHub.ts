@@ -1,10 +1,7 @@
-// for hoc - withEhEvent(eventName, handlerToProps :(data: )=> {})
-// handles event, returns props
-
-export type Handler = (data: any, name: string) => void | Promise<any>;
+export type EhHandler = (data: any, name: string) => void | Promise<any>;
 
 interface IRegistration {
-  [eventName: string]: [Handler];
+  [eventName: string]: [EhHandler];
 }
 
 interface IEhInternalRecursion<T> {
@@ -54,7 +51,7 @@ export class EventHub {
     return handlers;
   }
 
-  public fire<T>(name: string, data: T, handlers?: [Handler]) {
+  public fire<T>(name: string, data: T, handlers?: [EhHandler]) {
     if (!handlers) {
       handlers = this.registrations[name];
     }

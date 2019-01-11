@@ -1,4 +1,4 @@
-import { eh, EventHub, Handler } from './EventHub';
+import { eh, EhHandler, EventHub } from './EventHub';
 
 let generatedEventsCounter = 0;
 const makeName = (original: string) => `${original}_${generatedEventsCounter++}`;
@@ -18,7 +18,7 @@ export class EhEvent<T> {
 
   public name: string;
   protected eventHub: EventHub;
-  protected registrations: [Handler] | undefined;
+  protected registrations: [EhHandler] | undefined;
 
   constructor(name: string, eventHub: EventHub = eh) {
     this.name = name;
