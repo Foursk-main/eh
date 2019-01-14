@@ -119,8 +119,8 @@ async function benchmarkWithNamesArray(magicNumber, names) {
     console.log("localEh events: ", Object.keys(localEh.registrations).length);
 
     for (let i = 0; i < iterations; i++) {
-        await directBenchmark(magicNumber, localEh, lastEventName);
         await ehEventBenchmark(magicNumber, localEh);
+        await directBenchmark(magicNumber, localEh, lastEventName);
         //await ehEventDirectBenchmark(magicNumber, localEh);
     }
 
