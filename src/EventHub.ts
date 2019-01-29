@@ -3,7 +3,7 @@ export type EhTypedHandler<T> = (data: T, name: string) => void | Promise<T>;
 
 interface IRegistration {
   [eventName: string]: EhHandler[];
-};
+}
 
 interface IEhInternalRecursion<T> {
   resolve: (value: T) => void;
@@ -52,7 +52,7 @@ export class EventHub {
 
     return {
       handlers,
-      unregister: () => this.unregister(name, handler)
+      unregister: () => this.unregister(name, handler),
     };
   }
 
