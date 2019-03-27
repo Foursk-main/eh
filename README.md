@@ -1,6 +1,9 @@
-# eh - simple & tiny event manager
+# eh - simple event manager
 
 Eh provides simple and flexible event management.
+
+For any questions, comments, feedback or hi-saying feel free to hit me up:
+mcr@foursk.com
 
 ## Installation
     npm i -s @foursk/eh
@@ -43,7 +46,7 @@ class Person {
     }
 }
 
-// use the EhEvent.fromClass instantiator, and give it your class
+// use the EhEvent.fromClass instantiator, and pass it your class
 const PersonEvent = EhEvent.fromClass(Person);
 
 // API is similar to global eh, but without event names
@@ -54,13 +57,24 @@ PersonEvent.register(np => console.log(`${np.name} is ${np.age} years old`));
 PersonEvent.fire(new Person('Dan', 100));
 
 // Output: Dan is 100 years old
+
+// use the EhEvent.fromInstance instantiator, with a template instance. 
+// use redundant data of desired type to "inform" intellisense
+const imaginaryConcertEvent = EhEvent.fromInstance({ artist: '' });
+
+imaginaryConcertEvent.register(({ artist }) => console.log(`${artist} is performing tonight!`));
+
+imaginaryConcertEvent.fire(({ artist: 'John Lennon' }));
+
+// Output: John Lennon is performing tonight!
 ```
 
 EhEvent usage comes with pretty comfortable intellisense support
 
 ![alt text](https://github.com/Foursk-main/eh/raw/master/examples/snips/ehEventIntellisense.png "Intellisense support")
 
-Example of usage with React
+### React
+This shows how to use eh in React class components
 ```javascript
 // use the EhEvent.fromInstance instantiator to use a simple object as an event template
 const eventChangeColor = EhEvent.fromInstance({ color: "" });

@@ -23,7 +23,8 @@
             "error",
             "always"
         ],
-        "no-console": "off"
+        "no-console": "error",
+        "no-unused-vars": 1
     },
     "settings": {}
 }
