@@ -5,6 +5,8 @@ Eh provides simple and flexible event management.
 For any questions, comments, feedback or hi-saying feel free to hit me up:
 mcr@foursk.com
 
+v 0.1.5: updated packages
+
 ## Installation
     npm i -s @foursk/eh
 
