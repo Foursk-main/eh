@@ -1,4 +1,4 @@
-import eh, { EhEvent, EventHub } from '../dist/index';
+import eh, { EhEvent, EventHub, EhState } from '../dist/index';
 import { expect } from 'chai';
 import crypto from 'crypto';
 
@@ -7,6 +7,7 @@ export const genRandomString = (len = 10) => crypto.randomBytes(Math.ceil(len / 
 export {
     EhEvent,
     EventHub,
+    EhState,
     eh,
     expect
 };
