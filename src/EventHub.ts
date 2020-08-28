@@ -67,7 +67,7 @@ export class EventHub {
    * @param handler function that handles the event. The function expects a T object
    */
   public registerOnce<T>(name: string, handler: EhTypedHandler<T>) {
-    const retval = this.register<T>(name, (data) => {
+    const retval = this.register<T>(name, data => {
       retval.unregister();
       return handler(data, name);
     });
