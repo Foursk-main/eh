@@ -41,6 +41,11 @@ export class EventHub {
     this.registrations = {};
   }
 
+  /**
+   * Register a handler that will be invoked each time the "fire" function is called with your event name
+   * @param name Name of event to register for. Each time an event with this name will be fired, your handler will be called
+   * @param handler function that handles the event. The function expects a T object
+   */
   public register<T>(name: string, handler: EhTypedHandler<T>) {
     const handlers = this.registrations[name];
 
@@ -56,12 +61,32 @@ export class EventHub {
     };
   }
 
+  /**
+   * Register a handler that will be invoked *ONE* time, when the "fire" function is called
+   * @param name Name of event to register for. Each time an event with this name will be fired, your handler will be called
+   * @param handler function that handles the event. The function expects a T object
+   */
+  public registerOnce<T>(name: string, handler: EhTypedHandler<T>) {
+    const retval = this.register<T>(name, (data) => {
+      retval.unregister();
+      return handler(data, name);
+    });
+
+    return retval;
+  }
+
   public unregister<T>(name: string, handler: EhTypedHandler<T>) {
     const newHandlers = this.registrations[name].filter(h => h !== handler);
     this.registrations[name] = newHandlers;
     return newHandlers;
   }
 
+  /**
+   * Invoke an event and pass data to all its registered handlers
+   * @param name Name of event to fire. All handlers registered with this name will be invoked.
+   * @param data Data to pass to handlers. Depending on your handlers, the data may be modified.
+   * @param handlers Override the registered handlers with a custom list of handlers. Leave this empty to use the normal flow.
+   */
   public fire<T>(name: string, data: T, handlers?: EhHandler[]) {
     if (!handlers) {
       handlers = this.registrations[name];
@@ -74,6 +99,14 @@ export class EventHub {
         resolve(data);
       }
     });
+  }
+
+  /**
+   * Create a dedicated function for firing your event
+   * @param name Name of event to be fired each time your function is called
+   */
+  public cannon<T>(name: string) {
+    return (data: T, handlers?: EhHandler[]) => this.fire(name, data, handlers);
   }
 }
 

@@ -66,6 +66,16 @@ export class EhEvent<T extends object> {
   }
 
   /**
+   * Register a handler that will be invoked *ONE* time, when the "fire" function is called
+   * @param handler function that handles the event. The function expects a T object
+   * @param eventHub A custom EventHub to register this handler with. Defaults to initially registered EventHub (recommended)
+   */
+  public registerOnce(handler: EhEventHandler<T>, eventHub: EventHub = this.eventHub) {
+    const retval = eventHub.registerOnce<T>(this.name, handler);
+    return retval;
+  }
+
+  /**
    * Receives a function and returns it, use for intellisense support when writing independent functions for a T object
    * @param handler create your function here, with intellisense
    */

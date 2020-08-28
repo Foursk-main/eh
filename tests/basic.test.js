@@ -20,9 +20,9 @@ import { genRandomString, eh, expect } from './test-kit';
  */
 
 describe("basic tests", function () {
-    const eventName = genRandomString();
-
+    
     it('event without data', function (done) {
+        const eventName = genRandomString();
         eh.register(eventName, done);
         eh.fire(eventName);
     });
@@ -61,5 +61,64 @@ describe("basic tests", function () {
         });
 
         eh.fire(eventName, data);
+    });
+
+    it('multiple calls', function (done) {
+        const eventName = genRandomString();
+        const incrementMe = { num: 1 };
+
+        eh.register(eventName, (i) => i.num++);
+
+        eh.fire(eventName, incrementMe);
+        eh.fire(eventName, incrementMe);
+        eh.fire(eventName, incrementMe);
+
+        expect(incrementMe.num).to.be.equal(4);
+        done();
+    });
+
+    it('register once', function (done) {
+        const eventName = genRandomString();
+        const incrementMe = { num: 1 };
+
+        eh.registerOnce(eventName, (i) => i.num++);
+
+        eh.fire(eventName, incrementMe);
+        eh.fire(eventName, incrementMe);
+        eh.fire(eventName, incrementMe);
+
+        expect(incrementMe.num).to.be.equal(2);
+        done();
+    });
+
+    it('register once & normal', function (done) {
+        const eventName = genRandomString();
+        const incrementMe = { num: 1 };
+
+        eh.registerOnce(eventName, (i) => i.num++);
+        eh.register(eventName, (i) => i.num++);
+
+        eh.fire(eventName, incrementMe);
+        eh.fire(eventName, incrementMe);
+        eh.fire(eventName, incrementMe);
+
+        expect(incrementMe.num).to.be.equal(5);
+        done();
+    });
+
+    it('event cannon', function (done) {
+        const eventName = genRandomString();
+        const incrementMe = { num: 1 };
+
+        eh.register(eventName, (i) => i.num++);
+
+        const cannon = eh.cannon(eventName);
+
+        cannon(incrementMe);
+        cannon(incrementMe);
+        cannon(incrementMe);
+
+        expect(incrementMe.num).to.be.equal(4);
+        done();
     });
 });
